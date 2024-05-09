@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+@layer utilities {
+  /* Gradients */
+  .bg-gradient-turquoise {
+    @apply bg-gradient-to-r from-turquoise-700 to-turquoise-400;
+  }
+  .text-gradient-turquoise {
+    @apply bg-gradient-to-tl from-turquoise-700 to-turquoise-400 bg-clip-text text-transparent;
+  }
+  .border-gradient-turquoise {
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right bottom, #04ffa5, #155773);
+  }
+}
