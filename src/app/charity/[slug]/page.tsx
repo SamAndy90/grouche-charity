@@ -1,35 +1,39 @@
-import { getCharity } from "data-fetchers/catalog";
-import { client } from "data-fetchers/client";
+import { charityList } from "data";
 
-import { DataFetcherErrorAlert } from "common/DataFetcherErrorAlert";
+// import { getCharity } from "data-fetchers/catalog";
+// import { client } from "data-fetchers/client";
+// import { DataFetcherErrorAlert } from "common/DataFetcherErrorAlert";
 import { Container } from "common/UI";
 import { Description } from "components/Charity/Description";
 import { DonationHistory } from "components/Charity/DonationHistory";
 import { Gallery } from "components/Charity/Gallery";
 import { SelectDonate } from "components/Charity/SelectDonate";
 
-import { fetcherAsyncRunner } from "utils/data-fetchers";
+// import { fetcherAsyncRunner } from "utils/data-fetchers";
 
 export default async function CharityPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const [charity, err] = await fetcherAsyncRunner(() =>
-    getCharity(client, params.slug),
-  );
+  // TODO uncomment
+  // const [charity, err] = await fetcherAsyncRunner(() =>
+  //   getCharity(client, params.slug),
+  // );
 
-  if (err) {
-    return (
-      <section className={"p-10"}>
-        <Container>
-          <DataFetcherErrorAlert error={err} />
-        </Container>
-      </section>
-    );
-  }
+  // if (err) {
+  //   return (
+  //     <section className={"p-10"}>
+  //       <Container>
+  //         <DataFetcherErrorAlert error={err} />
+  //       </Container>
+  //     </section>
+  //   );
+  // }
 
-  // const char = charityList.find((c) => c.id === params.slug);
+  // TODO delete this 2 lines
+  const charity = charityList.find((c) => c.id === params.slug);
+  if (!charity) return;
 
   const {
     description,

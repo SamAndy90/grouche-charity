@@ -1,14 +1,15 @@
-import { getCharityList } from "data-fetchers/catalog";
-import { client } from "data-fetchers/client";
+import { charityList } from "data";
+// import { getCharityList } from "data-fetchers/catalog";
+// import { client } from "data-fetchers/client";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { SearchParams } from "types";
 
-import { DataFetcherErrorAlert } from "common/DataFetcherErrorAlert";
+// import { DataFetcherErrorAlert } from "common/DataFetcherErrorAlert";
 import { Container, Loader } from "common/UI";
 import { CharityList } from "components/Home/CharityList";
 
-import { fetcherAsyncRunner } from "utils/data-fetchers";
-import { SearchParams } from "types";
+// import { fetcherAsyncRunner } from "utils/data-fetchers";
 
 export const metadata: Metadata = {
   title: "Search Charity and donate",
@@ -30,20 +31,20 @@ export default async function SearchPage({
   );
 }
 
-async function Results({ searchParams }: { searchParams: SearchParams }) {
-  const { query } = searchParams;
+async function Results({}: { searchParams: SearchParams }) {
+  // const { query } = searchParams;
 
-  const [charityList, err] = await fetcherAsyncRunner(() =>
-    getCharityList(client, {
-      params: {
-        search: query,
-      },
-    }),
-  );
+  // const [charityList, err] = await fetcherAsyncRunner(() =>
+  //   getCharityList(client, {
+  //     params: {
+  //       search: query,
+  //     },
+  //   }),
+  // );
 
-  if (err) {
-    return <DataFetcherErrorAlert error={err} />;
-  }
+  // if (err) {
+  //   return <DataFetcherErrorAlert error={err} />;
+  // }
 
   return <CharityList data={charityList} />;
 }
