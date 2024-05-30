@@ -1,11 +1,16 @@
 import { Suspense } from "react";
 
-import { Charity } from "components/Home/Charity";
+import { Loader } from "common/UI";
+import { CharitySection } from "components/Home/CharitySection";
+import { IntroductionInfo } from "components/Home/IntroductionInfo";
 
-export default function Home() {
+export default async function Home() {
   return (
-    <Suspense>
-      <Charity />
-    </Suspense>
+    <>
+      <Suspense fallback={<Loader />}>
+        <CharitySection />
+      </Suspense>
+      <IntroductionInfo />
+    </>
   );
 }

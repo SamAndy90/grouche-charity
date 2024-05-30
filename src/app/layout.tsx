@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
+import { Footer } from "components/Footer/Footer";
 import { Header } from "components/Header/Header";
+import { Providers } from "components/Providers";
 
 import "styles/tailwind.css";
 
@@ -32,8 +34,13 @@ export default function RootLayout({
       className={`${montserrat.variable} bg-astra-950 text-white antialiased`}
     >
       <body>
-        <Header />
-        <main>{children}</main>
+        <Providers>
+          <div className={"flex h-full flex-col"}>
+            <Header />
+            <main className={"flex-1 pt-[70px]"}>{children}</main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );

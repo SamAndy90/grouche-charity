@@ -4,7 +4,7 @@ export default function AboutPage() {
   return (
     <section>
       <Container>
-        <div>About Page</div>
+        <div>This page is still under development</div>
       </Container>
     </section>
   );

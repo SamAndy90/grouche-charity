@@ -19,6 +19,7 @@ export type DialogProps = {
     overlay?: string;
     contentWrapper?: string;
     content?: string;
+    xButton?: string;
   };
 };
 
@@ -46,7 +47,7 @@ export function Dialog(props: DialogProps) {
         >
           <div
             className={cn(
-              "fixed inset-0 z-[90] bg-astra-950/30",
+              "fixed inset-0 z-[90] bg-astra-950/80",
               className?.overlay,
             )}
             aria-hidden
@@ -76,13 +77,16 @@ export function Dialog(props: DialogProps) {
             >
               <ButtonBase
                 className={{
-                  button: "absolute right-4 top-3 outline-none",
+                  button: cn(
+                    "absolute right-[35px] top-[22px] outline-none",
+                    className?.xButton,
+                  ),
                 }}
                 onClick={onClose}
                 startIcon={
                   <FiX
                     className={
-                      "size-5 transition-colors duration-300 hover:text-turquoise-400"
+                      "size-6 stroke-[3px] transition-colors duration-300 hover:text-turquoise-400"
                     }
                   />
                 }

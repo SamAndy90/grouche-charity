@@ -1,17 +1,38 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
+import { StringParam, useQueryParams, withDefault } from "use-query-params";
 
 import { cn } from "utils/cn";
 
 export const SearchInput = () => {
-  const [query, setQuery] = useState("");
+  const router = useRouter();
+  const [filter, setFilter] = useQueryParams(
+    {
+      query: withDefault(StringParam, ""),
+    },
+    {
+      removeDefaultsFromUrl: true,
+    },
+  );
+
+  const [searchInputValue, setSearchInputValue] = useState(filter.query);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setFilter(() => ({
+        query: searchInputValue,
+      }));
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [searchInputValue, setFilter]);
 
   function submitHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log({ query });
-    setQuery("");
+    router.push(`/search?query=${filter.query}`);
   }
 
   return (
@@ -25,8 +46,8 @@ export const SearchInput = () => {
       </div>
       <form onSubmit={submitHandler} className={"min-w-56"}>
         <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={searchInputValue}
+          onChange={(e) => setSearchInputValue(e.target.value)}
           type={"text"}
           placeholder={"Find charity projects"}
           className={

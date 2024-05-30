@@ -4,7 +4,7 @@ export default function CasesPage() {
   return (
     <section>
       <Container>
-        <div>Cases Page</div>
+        <div>This page is still under development</div>
       </Container>
     </section>
   );

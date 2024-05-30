@@ -41,6 +41,7 @@ export function Button<T>(props: ButtonProps<T>) {
             "w-full": fullWidth,
             "px-[22px] py-1.5 text-xs": size === "small",
             "px-6 py-2": size === "normal",
+            "px-10 py-2.5 text-base": size === "large",
           },
           className?.button,
         ),

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { IoIosHeart } from "react-icons/io";
 import { type Charity } from "types";
 
+import { Progress } from "common/Progress";
 import { ButtonBase, Title } from "common/UI";
 
 import { MainUrl } from "route-urls";
@@ -13,18 +13,26 @@ export type CharityCardProps = {
 };
 
 export function CharityCard({ item }: CharityCardProps) {
-  const { title, description, donation_total, donation_current, image, id } =
-    item;
+  const {
+    title,
+    description,
+    donation_collected,
+    donation_needed,
+    images,
+    id,
+  } = item;
 
   return (
     <Link
       href={MainUrl.getCharityDetails(id)}
-      className={"overflow-hidden rounded-[20px]"}
+      className={
+        "transform overflow-hidden rounded-[20px] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(255,255,255,0.25)]"
+      }
     >
       <div className={"relative min-h-[110px] bg-astra-100 pb-[43%]"}>
-        {image && (
+        {images && images?.length > 0 && (
           <Image
-            src={image}
+            src={images[0]}
             alt={"Charity image"}
             fill
             className={"object-cover"}
@@ -47,31 +55,8 @@ export function CharityCard({ item }: CharityCardProps) {
           />
         </div>
         <p className={"mb-3 line-clamp-3 min-h-12 text-xs"}>{description}</p>
-        <Progress current={donation_current} total={donation_total} />
+        <Progress current={donation_collected} total={donation_needed} />
       </div>
     </Link>
   );
 }
-
-export const Progress = ({
-  current,
-  total,
-}: {
-  current: number;
-  total: number;
-}) => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    setProgress((current / total) * 100);
-  }, [total, current]);
-
-  return (
-    <div className={"h-1.5 w-full overflow-hidden rounded-full bg-astra-950"}>
-      <div
-        style={{ width: `${progress}%` }}
-        className={`bg-gradient-turquoise h-full rounded-full transition-[width] duration-500`}
-      ></div>
-    </div>
-  );
-};

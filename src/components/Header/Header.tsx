@@ -30,84 +30,76 @@ export function Header() {
   }, [menuIsOpen]);
 
   return (
-    <>
-      <header
-        className={
-          "fixed inset-x-0 top-0 z-50 w-full bg-astra-950 shadow-[0_0_20px_rgba(255,255,255,0.03)] md:shadow-none"
-        }
-      >
-        <Container>
-          <div
-            className={"flex items-center justify-between gap-x-[52px] py-4"}
+    <header
+      className={
+        "fixed inset-x-0 top-0 z-50 w-full bg-astra-950 shadow-[0_0_20px_rgba(255,255,255,0.03)] md:shadow-none"
+      }
+    >
+      <Container>
+        <div className={"flex items-center justify-between gap-x-[52px] py-4"}>
+          <Link
+            href={MainUrl.getHome()}
+            className={
+              "border border-astra-900 px-8 py-2.5 text-xs text-astra-400 transition-colors hover:border-astra-400 hover:text-astra-100"
+            }
           >
-            <Link
-              href={MainUrl.getHome()}
-              className={
-                "border border-astra-900 px-8 py-2.5 text-xs text-astra-400 transition-colors hover:border-astra-400 hover:text-astra-100"
-              }
-            >
-              Astra
-            </Link>
-            <div className={"hidden flex-1 sm:flex"}>
-              <SearchInput />
-            </div>
-            <div className={"hidden items-center gap-x-9 lg:flex"}>
-              <nav className={"flex text-xs font-semibold"}>
-                <Link
-                  href={MainUrl.getAbout()}
-                  className={cn("rounded-lg px-9 py-1.5 transition-colors", {
-                    "hover:bg-astra-400/10": !pathname.includes(
-                      MainUrl.getAbout(),
-                    ),
-                  })}
-                >
-                  <span
-                    className={cn({
-                      "text-gradient-turquoise !bg-gradient-to-tl":
-                        pathname.includes(MainUrl.getAbout()),
-                    })}
-                  >
-                    About
-                  </span>
-                </Link>
-                <Link
-                  href={MainUrl.getCases()}
-                  className={cn("rounded-lg px-9 py-1.5 transition-colors", {
-                    "hover:bg-astra-400/10": !pathname.includes(
-                      MainUrl.getCases(),
-                    ),
-                  })}
-                >
-                  <span
-                    className={cn({
-                      "text-gradient-turquoise !bg-gradient-to-tl":
-                        pathname.includes(MainUrl.getCases()),
-                    })}
-                  >
-                    Cases
-                  </span>
-                </Link>
-              </nav>
-              <Button size={"small"}>Connect Wallet</Button>
-            </div>
-            <ButtonBase
-              onClick={() => setMenuIsOpen(true)}
-              title={"Open burger menu"}
-              className={{
-                button: "transition-colors hover:text-turquoise-400 lg:hidden",
-              }}
-            >
-              <FiMenu className={"size-6"} />
-            </ButtonBase>
-            <BurgerMenu
-              open={menuIsOpen}
-              onClose={() => setMenuIsOpen(false)}
-            />
+            Astra
+          </Link>
+          <div className={"hidden flex-1 sm:flex"}>
+            <SearchInput />
           </div>
-        </Container>
-      </header>
-      <div className={"h-[70px]"}></div>
-    </>
+          <div className={"hidden items-center gap-x-9 lg:flex"}>
+            <nav className={"flex text-xs font-semibold"}>
+              <Link
+                href={MainUrl.getAbout()}
+                className={cn("rounded-lg px-9 py-1.5 transition-colors", {
+                  "hover:bg-astra-400/10": !pathname.includes(
+                    MainUrl.getAbout(),
+                  ),
+                })}
+              >
+                <span
+                  className={cn({
+                    "text-gradient-turquoise !bg-gradient-to-tl":
+                      pathname.includes(MainUrl.getAbout()),
+                  })}
+                >
+                  About
+                </span>
+              </Link>
+              <Link
+                href={MainUrl.getCases()}
+                className={cn("rounded-lg px-9 py-1.5 transition-colors", {
+                  "hover:bg-astra-400/10": !pathname.includes(
+                    MainUrl.getCases(),
+                  ),
+                })}
+              >
+                <span
+                  className={cn({
+                    "text-gradient-turquoise !bg-gradient-to-tl":
+                      pathname.includes(MainUrl.getCases()),
+                  })}
+                >
+                  Cases
+                </span>
+              </Link>
+            </nav>
+            <Button size={"small"}>Connect Wallet</Button>
+          </div>
+          <ButtonBase
+            onClick={() => setMenuIsOpen(true)}
+            title={"Open burger menu"}
+            className={{
+              button: "transition-colors hover:text-turquoise-400 lg:hidden",
+            }}
+          >
+            <FiMenu className={"size-6"} />
+          </ButtonBase>
+          <BurgerMenu open={menuIsOpen} onClose={() => setMenuIsOpen(false)} />
+        </div>
+      </Container>
+    </header>
   );
 }
 
