@@ -1,4 +1,4 @@
-import { Loader } from "common/ui";
+import { Loader } from "common/UI";
 
 export default function Loading() {
   return (
